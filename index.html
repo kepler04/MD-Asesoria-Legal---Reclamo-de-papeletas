@@ -15,7 +15,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -40,15 +40,9 @@
 
   <!-- NAV + HERO -->
   <div class="hero-wrap">
-    <div class="hero-wrap__glow" aria-hidden="true"></div>
-    <svg class="hero-wrap__watermark hero-wrap__watermark--scale" viewBox="0 0 24 24" fill="none" stroke="#FFF8F5" stroke-width="0.5" aria-hidden="true"><path d="M12 3v18"></path><path d="M5 8l-3 6a3.5 3.5 0 0 0 6 0z"></path><path d="M19 8l-3 6a3.5 3.5 0 0 0 6 0z"></path><path d="M5 8h14"></path><path d="M9 21h6"></path></svg>
-    <svg class="hero-wrap__watermark hero-wrap__watermark--clock" viewBox="0 0 24 24" fill="none" stroke="#FFF8F5" stroke-width="0.5" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.2 2"></path></svg>
-
     <nav class="navbar container">
       <a href="#inicio" class="navbar__brand">
-        <span class="navbar__logo">M<span class="text-red">D</span></span>
-        <span class="navbar__logo-divider" aria-hidden="true"></span>
-        <span class="navbar__logo-sub">Asesoría<br>Legal</span>
+        <img src="assets/logo-md-light-120.png" srcset="assets/logo-md-light-120.png 1x, assets/logo-md-light-240.png 2x" alt="MD Asesoría Legal" class="navbar__brand-mark">
       </a>
 
       <button type="button" class="navbar__toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú">
@@ -59,6 +53,8 @@
         <a href="#inicio" class="navbar__link navbar__link--active">Inicio</a>
         <a href="#como-funciona" class="navbar__link">Cómo funciona</a>
         <a href="#servicios" class="navbar__link">Servicios</a>
+        <a href="#noticias" class="navbar__link">Noticias</a>
+        <a href="#videos" class="navbar__link">Videos</a>
         <a href="#equipo" class="navbar__link">Equipo</a>
         <a href="#preguntas" class="navbar__link">Preguntas</a>
         <a href="https://wa.me/51940124759" class="btn btn-primary navbar__cta">Contáctanos</a>
@@ -66,16 +62,60 @@
     </nav>
 
     <section class="hero" id="inicio">
-      <div class="hero__inner">
-        <div class="hero__badge">Sí, se puede impugnar</div>
-        <p class="eyebrow hero__eyebrow" id="heroEyebrow">Multas de tránsito</p>
-        <h1 class="hero__title">
-          <span id="heroLine1">TU PAPELETA</span><br>
-          <span id="heroLine2">TIENE SALIDA</span>
-        </h1>
-        <p class="hero__subhead" id="heroSubhead">Asesoría legal para impugnar multas de tránsito en Lima</p>
-        <a href="https://wa.me/51940124759" class="btn btn-primary hero__cta">Consultar ahora</a>
-        <div class="hero__dots" id="heroDots" role="tablist" aria-label="Mensajes destacados"></div>
+      <div class="container hero__container">
+        <div class="hero__top">
+          <ul class="hero__entities">
+            <li>
+              <img src="assets/entity-atu.png" alt="ATU" loading="lazy">
+              <span>Autoridad de Transporte Urbano para Lima y Callao</span>
+            </li>
+            <li>
+              <img src="assets/entity-sat.png" alt="SAT" loading="lazy">
+              <span>Servicio de Administración Tributaria de Lima</span>
+            </li>
+            <li>
+              <img src="assets/entity-sutran.png" alt="SUTRAN" loading="lazy">
+              <span>Superintendencia de Transporte Terrestre de Personas, Carga y Mercancías</span>
+            </li>
+            <li>
+              <img src="assets/entity-callao.png" alt="Municipalidad Provincial del Callao" loading="lazy">
+              <span>Municipalidad Provincial del Callao</span>
+            </li>
+          </ul>
+
+          <div class="hero__inner">
+            <div class="hero__badge">Sí, se puede impugnar</div>
+            <p class="eyebrow hero__eyebrow" id="heroEyebrow">Multas de tránsito</p>
+            <h1 class="hero__title">
+              <span id="heroLine1">RECLAMO DE</span><br>
+              <span id="heroLine2" class="text-red">PAPELETAS</span>
+            </h1>
+            <svg class="hero__divider-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 3v18"></path><path d="M5 8l-3 6a3.5 3.5 0 0 0 6 0z"></path><path d="M19 8l-3 6a3.5 3.5 0 0 0 6 0z"></path><path d="M5 8h14"></path><path d="M9 21h6"></path></svg>
+            <p class="hero__subhead" id="heroSubhead">Defendemos tus derechos, protegemos tu tiempo y tu bolsillo.</p>
+            <div class="hero__cta-row">
+              <a href="https://wa.me/51940124759" class="btn btn-primary hero__cta">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                <span>Consultar ahora<br><small>Atención 100% virtual</small></span>
+              </a>
+            </div>
+            <div class="hero__dots" id="heroDots" role="tablist" aria-label="Mensajes destacados"></div>
+          </div>
+        </div>
+
+        <ul class="hero__props">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg>
+            <span>Analizamos<br>tu caso</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h8l4 4v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"></path><path d="M14 3v5h5"></path><path d="M9 13h6M9 17h6"></path></svg>
+            <span>Elaboramos<br>tu descargo</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 7.5l8 4.5 8-4.5z"></path><path d="M4 7.5v9L12 21l8-4.5v-9"></path><path d="M12 12v9"></path></svg>
+            <span>Te representamos y<br>obtenemos resultados</span>
+          </li>
+        </ul>
       </div>
     </section>
   </div>
@@ -93,9 +133,8 @@
 
     <!-- CONÓCENOS -->
     <section class="know-us">
-      <div class="know-us__media" role="img" aria-label="Fotografía del local, pendiente de agregar" data-reveal="left">
-        <svg class="know-us__watermark" viewBox="0 0 24 24" fill="none" stroke="#FFF8F5" stroke-width="1" aria-hidden="true"><path d="M4 21V7l8-4 8 4v14"></path><path d="M9 21v-6h6v6"></path><path d="M9 11h.01M9 15h.01M15 11h.01M15 15h.01"></path></svg>
-        <span class="placeholder-tag">Foto del local — próximamente</span>
+      <div class="know-us__media" data-reveal="left">
+        <img src="assets/foto-local.jpg" alt="Fachada del local de MD Asesoría Legal en Av. Túpac Amaru 530, Comas">
       </div>
       <div class="know-us__panel" data-reveal="right">
         <h2 class="know-us__title">Conócenos</h2>
@@ -177,6 +216,94 @@
         <a href="https://wa.me/51940124759" class="btn btn-ghost-light talk-banner__cta">Reservar mi cupo</a>
       </div>
     </div>
+
+    <!-- NOTICIAS Y CHARLAS -->
+    <section class="news" id="noticias">
+      <div class="container text-center">
+        <p class="eyebrow eyebrow--center">Noticias</p>
+        <div class="divider divider--center"></div>
+        <h2 class="section-title section-title--center">Así son nuestras charlas informativas</h2>
+        <p class="news__intro">Organizamos charlas gratuitas por Google Meet sobre los temas que más consultan nuestros clientes. Estos son algunos de los que ya hemos tratado.</p>
+
+        <ul class="news__grid">
+          <li class="news__card" data-reveal data-reveal-group="news">
+            <div class="news__media">
+              <img src="assets/charla-impugnacion.jpg" alt="Flyer de la charla informativa sobre impugnación y prescripción de papeletas">
+            </div>
+            <div class="news__body">
+              <span class="news__tag">Charla informativa</span>
+              <h3>Impugnación y prescripción de papeletas</h3>
+              <p>Qué papeletas ya prescribieron y cómo impugnar las que siguen vigentes.</p>
+              <p class="news__meta">Con Abog. Genaro Dueñas Anchante y Abog. Milu Mejía Obregón · por Google Meet</p>
+            </div>
+          </li>
+
+          <li class="news__card" data-reveal data-reveal-group="news">
+            <div class="news__media">
+              <img src="assets/charla-licencias.jpg" alt="Flyer de la charla sobre suspensión y cancelación de licencias de conducir">
+            </div>
+            <div class="news__body">
+              <span class="news__tag">Charla especial</span>
+              <h3>Suspensión y cancelación de licencias de conducir</h3>
+              <p>¿Te pueden quitar la licencia por acumular papeletas? Resolvemos esa duda paso a paso.</p>
+              <p class="news__meta">Con Abog. Genaro Dueñas Anchante · por Google Meet</p>
+            </div>
+          </li>
+
+          <li class="news__card" data-reveal data-reveal-group="news">
+            <div class="news__media">
+              <img src="assets/charla-ejecucion.jpg" alt="Flyer de la charla sobre ejecución coactiva en tránsito y transporte">
+            </div>
+            <div class="news__body">
+              <span class="news__tag">Charla especial</span>
+              <h3>Ejecución coactiva en tránsito y transporte</h3>
+              <p>Las etapas del procedimiento, tus derechos como administrado y las causales de suspensión.</p>
+              <p class="news__meta">Con Abog. Genaro Dueñas Anchante, especialista en Derecho Administrativo</p>
+            </div>
+          </li>
+        </ul>
+
+        <a href="https://www.facebook.com/Reclamodepapeletas/?locale=es_LA" class="btn btn-outline">Ver más en Facebook</a>
+      </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section class="videos" id="videos">
+      <div class="container text-center">
+        <p class="eyebrow eyebrow--center">Videos</p>
+        <div class="divider divider--center"></div>
+        <h2 class="section-title section-title--center">Míranos en video</h2>
+        <p class="news__intro">Explicamos casos reales y dudas frecuentes sobre papeletas y licencias, directo desde nuestro TikTok.</p>
+
+        <ul class="video-grid">
+          <li class="video-card" data-reveal data-reveal-group="videos">
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mdasesorialegal/video/7678715880137706760" data-video-id="7678715880137706760" style="max-width: 605px; min-width: 325px;">
+              <section>
+                <a target="_blank" rel="noopener" href="https://www.tiktok.com/@mdasesorialegal/video/7678715880137706760">Descuento del 90% en papeletas de tránsito — @mdasesorialegal</a>
+              </section>
+            </blockquote>
+          </li>
+          <li class="video-card" data-reveal data-reveal-group="videos">
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mdasesorialegal/video/7678021492931595541" data-video-id="7678021492931595541" style="max-width: 605px; min-width: 325px;">
+              <section>
+                <a target="_blank" rel="noopener" href="https://www.tiktok.com/@mdasesorialegal/video/7678021492931595541">Petición de gracia para licencia cancelada — @mdasesorialegal</a>
+              </section>
+            </blockquote>
+          </li>
+          <li class="video-card" data-reveal data-reveal-group="videos">
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mdasesorialegal/video/7672455443461016853" data-video-id="7672455443461016853" style="max-width: 605px; min-width: 325px;">
+              <section>
+                <a target="_blank" rel="noopener" href="https://www.tiktok.com/@mdasesorialegal/video/7672455443461016853">Caducidad del PAS y prescripción de papeletas — @mdasesorialegal</a>
+              </section>
+            </blockquote>
+          </li>
+        </ul>
+
+        <a href="https://www.tiktok.com/@mdasesorialegal" class="btn btn-outline">Ver más en TikTok</a>
+      </div>
+    </section>
+
+    <script async src="https://www.tiktok.com/embed.js"></script>
 
     <!-- EQUIPO -->
     <section class="team" id="equipo">
@@ -261,9 +388,8 @@
 
     <!-- UBICACIÓN -->
     <section class="location">
-      <div class="location__media" role="img" aria-label="Fotografía de Comas, Lima, pendiente de agregar" data-reveal="left">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#FFF8F5" stroke-width="1" aria-hidden="true"><path d="M12 21s7-6.4 7-12a7 7 0 0 0-14 0c0 5.6 7 12 7 12z"></path><circle cx="12" cy="9" r="2.4"></circle></svg>
-        <span class="placeholder-tag">Comas, Lima — foto próximamente</span>
+      <div class="location__media" data-reveal="left">
+        <img src="assets/foto-local.jpg" alt="Fachada del local de MD Asesoría Legal en Av. Túpac Amaru 530, Comas">
       </div>
       <div class="location__panel" data-reveal="right">
         <div>
@@ -275,6 +401,7 @@
         <div>
           <p class="location__label">Escríbenos</p>
           <p><a href="https://wa.me/51940124759" class="location__link">+51 940 124 759</a></p>
+          <p><a href="https://wa.me/51908803160" class="location__link">+51 908 803 160</a></p>
           <p><a href="mailto:mdasesorialegal@gmail.com" class="location__link">mdasesorialegal@gmail.com</a></p>
           <p class="location__note">Horario: <strong>[por confirmar]</strong></p>
         </div>
@@ -287,13 +414,14 @@
   <footer class="site-footer">
     <div class="container site-footer__grid">
       <div>
-        <span class="navbar__logo">M<span class="text-red">D</span></span>
-        <span class="site-footer__logo-sub">Asesoría Legal</span>
+        <img src="assets/logo-md-light-120.png" srcset="assets/logo-md-light-120.png 1x, assets/logo-md-light-240.png 2x" alt="MD Asesoría Legal" class="site-footer__brand-mark">
         <p class="site-footer__text">Reclamo y defensa frente a papeletas de tránsito en Lima. Atención 100% virtual mientras remodelamos nuestro local en Comas.</p>
       </div>
       <div>
         <p class="site-footer__heading">Navegación</p>
         <a href="#servicios" class="site-footer__link">Servicios</a>
+        <a href="#noticias" class="site-footer__link">Noticias</a>
+        <a href="#videos" class="site-footer__link">Videos</a>
         <a href="#equipo" class="site-footer__link">Equipo</a>
         <a href="#preguntas" class="site-footer__link">Preguntas frecuentes</a>
         <a href="#contacto" class="site-footer__link">Contacto</a>
@@ -301,8 +429,10 @@
       <div>
         <p class="site-footer__heading">Contacto</p>
         <a href="https://wa.me/51940124759" class="site-footer__link">+51 940 124 759</a>
+        <a href="https://wa.me/51908803160" class="site-footer__link">+51 908 803 160</a>
         <a href="mailto:mdasesorialegal@gmail.com" class="site-footer__link">mdasesorialegal@gmail.com</a>
         <a href="https://www.facebook.com/Reclamodepapeletas/?locale=es_LA" class="site-footer__link">Facebook</a>
+        <a href="https://www.tiktok.com/@mdasesorialegal" class="site-footer__link">TikTok</a>
       </div>
     </div>
     <div class="container site-footer__bottom">

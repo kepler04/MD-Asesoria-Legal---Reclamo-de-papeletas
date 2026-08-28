@@ -49,9 +49,9 @@
   var heroSlides = [
     {
       eyebrow: 'Multas de tránsito',
-      line1: 'TU PAPELETA',
-      line2: 'TIENE SALIDA',
-      subhead: 'Asesoría legal para impugnar multas de tránsito en Lima'
+      line1: 'RECLAMO DE',
+      line2: 'PAPELETAS',
+      subhead: 'Defendemos tus derechos, protegemos tu tiempo y tu bolsillo.'
     },
     {
       eyebrow: 'Licencia de conducir',

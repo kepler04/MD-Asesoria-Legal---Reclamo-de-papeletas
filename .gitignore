@@ -25,3 +25,18 @@ mockup/md-asesoria-legal-landing.html
 .env.local
 *.pem
 *.key
+
+# Imágenes originales sin procesar (fuente de diseño, ya optimizadas
+# y versionadas como assets/entity-*.png, foto-local.jpg, charla-*.jpg,
+# hero-bg.jpg, logo-md*.png — no se necesitan en el repo de producción)
+assets/BANNER SIN LETRAS.jpg
+assets/LOGO REAL DE MD .png
+assets/PRIMERA PAGINA PARA DEJABO DEL ENCABEZADO.png
+assets/Charla informativa inpugnacion y prescripcion.jpg
+assets/Charla informativa suspencion y cancelacion.jpg
+assets/ejecuccion coactiva.jpg
+assets/foto del local.png
+assets/atu.png
+assets/SAT.png
+assets/Sutran LOGO.jpg
+assets/mUNI CALLAO.jpg
