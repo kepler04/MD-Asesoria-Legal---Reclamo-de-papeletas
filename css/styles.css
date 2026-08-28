@@ -264,6 +264,19 @@ button { font: inherit; }
 }
 .navbar__cta { padding: 11px 22px; font-size: 13.5px; text-transform: uppercase; letter-spacing: 0.04em; }
 
+.navbar__socials { display: flex; align-items: center; gap: 14px; }
+.navbar__socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  color: #E7DFD3;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+.navbar__socials svg { width: 17px; height: 17px; }
+.navbar__socials a:hover { color: var(--color-red); transform: translateY(-1px); }
+
 .hero { position: relative; z-index: 2; min-height: clamp(460px, 74vh, 660px); display: flex; align-items: center; padding: 24px 0; }
 .hero__container { display: flex; flex-direction: column; gap: 48px; width: 100%; }
 .hero__top { display: grid; grid-template-columns: 260px 1fr; gap: 36px; align-items: center; }
@@ -857,7 +870,10 @@ button { font: inherit; }
   .navbar__menu.is-open { transform: scaleY(1); opacity: 1; pointer-events: auto; }
   .navbar__link { padding: 14px 0; border-bottom: 1px solid rgba(255, 248, 245, 0.08); }
   .navbar__link--active::after { display: none; }
-  .navbar__cta { margin-top: 16px; justify-content: center; }
+  .navbar__socials { justify-content: center; gap: 22px; padding: 16px 0 4px; }
+  .navbar__socials a { width: 22px; height: 22px; }
+  .navbar__socials svg { width: 20px; height: 20px; }
+  .navbar__cta { margin-top: 12px; justify-content: center; }
 
   .utility-bar__email,
   .utility-bar__right { display: none; }
