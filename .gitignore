@@ -1,0 +1,27 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+
+# Node (por si en el futuro se agrega tooling)
+node_modules/
+npm-debug.log*
+
+# Configuración de agentes/IA (no es parte del sitio)
+.claude/
+.agents/
+skills-lock.json
+
+# Payload generado del canvas de diseño (~2.4MB, se regenera desde
+# mockup/Main.dc.html + mockup/canvas.json con la skill de diseño)
+mockup/md-asesoria-legal-landing.html
+
+# Variables de entorno / secretos (por si se agregan a futuro)
+.env
+.env.local
+*.pem
+*.key

@@ -1,0 +1,454 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    .page {
+      font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #FAF7F2;
+      color: #1B1512;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 { font-family: 'Zilla Slab', Georgia, 'Times New Roman', serif; margin: 0; line-height: 1.08; }
+    p { margin: 0; }
+    a { color: var(--red); text-decoration: none; }
+    a:hover { color: #8C0F1B; }
+    .eyebrow {
+      font-family: 'Space Mono', 'Courier New', monospace;
+      font-size: 12.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Work Sans', sans-serif; font-weight: 600; font-size: 16px;
+      padding: 15px 26px; border-radius: 3px; border: 2px solid transparent;
+      cursor: pointer; white-space: nowrap; transition: transform .12s ease, background .15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--red); color: #FFF8F5; }
+    .btn-primary:hover { background: #A6141F; color: #FFF8F5; }
+    .btn-ghost-light { background: transparent; color: #FAF7F2; border-color: rgba(250,247,242,0.55); }
+    .btn-ghost-light:hover { background: #FAF7F2; color: #1B1512; }
+    .btn-outline { background: transparent; color: var(--red); border-color: var(--red); }
+    .btn-outline:hover { background: var(--red); color: #FFF8F5; }
+
+    .navlink-dark { font-size: 13px; font-weight: 600; color: #E7DFD3; text-transform: uppercase; letter-spacing: 0.05em; }
+    .navlink-dark:hover { color: #FFC9BF; }
+
+    .step-num {
+      font-family: 'Zilla Slab', serif; font-weight: 700; font-size: 34px;
+      color: #EFE6D8;
+      -webkit-text-stroke: 1.5px var(--red);
+    }
+
+    details.faq summary { cursor: pointer; list-style: none; }
+    details.faq summary::-webkit-details-marker { display: none; }
+    details.faq[open] .faq-plus { transform: rotate(45deg); }
+    .faq-plus { transition: transform .15s ease; display: inline-block; }
+
+    .footer-link { color: #D8CFC2; font-size: 14px; }
+    .footer-link:hover { color: #FFFFFF; }
+
+    @media (max-width: 860px) {
+      .hide-mobile { display: none !important; }
+      .stack-mobile { flex-direction: column !important; align-items: flex-start !important; }
+      .two-col-grid { grid-template-columns: 1fr !important; }
+      .steps-grid { grid-template-columns: 1fr 1fr !important; }
+      .services-grid { grid-template-columns: 1fr !important; }
+      .footer-grid { grid-template-columns: 1fr !important; }
+      .section-pad { padding-top: 56px !important; padding-bottom: 56px !important; }
+    }
+    @media (max-width: 520px) {
+      .steps-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</helmet>
+
+<div class="page" style="--red: {{accent}};">
+
+  <!-- WHATSAPP FLOTANTE -->
+  <a href="https://wa.me/51940124759" style="position:fixed; right:20px; bottom:20px; z-index:50; width:58px; height:58px; border-radius:50%; background:var(--red); display:flex; align-items:center; justify-content:center; box-shadow:0 8px 22px rgba(27,21,18,0.28);">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFF8F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+    </svg>
+  </a>
+
+  <!-- BARRA DE UTILIDAD -->
+  <div style="background:var(--red); box-shadow:inset 0 -1px 0 rgba(0,0,0,0.22); color:#FFF8F5;">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; height:38px; padding-left:0; padding-right:28px;">
+      <div style="display:flex; align-items:stretch; height:100%;">
+        <a href="https://wa.me/51940124759" style="display:flex; align-items:center; gap:6px; padding:0 28px; background:#7A0E19; color:#FFF8F5; font-weight:600; font-size:12.5px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+          LÍNEA DIRECTA: +51 940 124 759
+        </a>
+        <a href="mailto:mdasesorialegal@gmail.com" class="hide-mobile" style="display:flex; align-items:center; margin-left:20px; color:#FFE3DB; font-size:12.5px;">mdasesorialegal@gmail.com</a>
+      </div>
+      <div class="hide-mobile" style="display:flex; align-items:center; gap:8px; letter-spacing:0.06em; text-transform:uppercase; font-size:11px;">
+        <span style="width:6px; height:6px; border-radius:50%; background:#FFF8F5; display:inline-block;"></span>
+        Atención 100% virtual — local en remodelación
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV + HERO: mismo fondo, el menú "flota" transparente sobre la foto -->
+  <div style="position:relative; overflow:hidden; background:linear-gradient(165deg, #1B1512 0%, #241310 55%, #1B1512 100%);">
+    <svg style="position:absolute; right:-90px; top:50%; transform:translateY(-50%); opacity:0.05; pointer-events:none;" width="560" height="560" viewBox="0 0 24 24" fill="none" stroke="#FFF8F5" stroke-width="0.5"><path d="M12 3v18"></path><path d="M5 8l-3 6a3.5 3.5 0 0 0 6 0z"></path><path d="M19 8l-3 6a3.5 3.5 0 0 0 6 0z"></path><path d="M5 8h14"></path><path d="M9 21h6"></path></svg>
+    <svg style="position:absolute; left:-70px; bottom:-70px; opacity:0.05; pointer-events:none;" width="360" height="360" viewBox="0 0 24 24" fill="none" stroke="#FFF8F5" stroke-width="0.5"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.2 2"></path></svg>
+
+    <!-- NAV: transparente, sin barra propia, "disuelta" en la misma imagen -->
+    <div class="container" style="position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between; height:96px;">
+      <div style="display:flex; align-items:baseline; gap:9px;">
+        <span style="font-family:'Zilla Slab', serif; font-weight:700; font-size:25px; letter-spacing:-0.02em;">
+          <span style="color:#FFF8F5;">M</span><span style="color:var(--red);">D</span>
+        </span>
+        <span class="hide-mobile" style="width:1px; height:22px; background:rgba(255,248,245,0.25); display:inline-block;"></span>
+        <span class="hide-mobile" style="font-family:'Zilla Slab', serif; font-size:14px; color:rgba(250,247,242,0.78); line-height:1.15;">Asesoría<br>Legal</span>
+      </div>
+      <div class="hide-mobile" style="display:flex; align-items:center; gap:32px;">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+          <a class="navlink-dark" href="#top">Inicio</a>
+          <span style="width:14px; height:2px; background:var(--red); display:block;"></span>
+        </div>
+        <a class="navlink-dark" href="#como-funciona">Cómo funciona</a>
+        <a class="navlink-dark" href="#servicios">Servicios</a>
+        <a class="navlink-dark" href="#equipo">Equipo</a>
+        <a class="navlink-dark" href="#preguntas">Preguntas</a>
+      </div>
+      <a class="btn btn-primary" href="https://wa.me/51940124759" style="padding:11px 22px; font-size:13.5px; text-transform:uppercase; letter-spacing:0.04em;">Contáctanos</a>
+    </div>
+
+    <!-- HERO -->
+    <div id="top" style="position:relative; z-index:2; min-height:clamp(460px, 74vh, 640px); display:flex; align-items:center; justify-content:center; text-align:center; padding:24px 24px 90px;">
+      <div style="position:relative; max-width:760px; display:flex; flex-direction:column; align-items:center; gap:18px;">
+        <div style="font-family:'Space Mono', monospace; font-weight:700; font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase; color:#FFC9BF; border:1.5px solid rgba(255,201,191,0.5); border-radius:20px; padding:7px 18px; transform:rotate(-1.5deg);">Sí, se puede impugnar</div>
+
+        <div class="eyebrow" style="color:#E2795E; letter-spacing:0.18em;">{{eyebrow}}</div>
+
+        <h1 style="font-size:clamp(38px, 6.4vw, 74px); color:#FFF8F5; text-transform:uppercase; letter-spacing:0.01em; line-height:1.05;">
+          {{headlineLine1}}<br>{{headlineLine2}}
+        </h1>
+
+        <p style="font-size:14.5px; letter-spacing:0.06em; text-transform:uppercase; color:#C9BBA4; margin-top:2px; max-width:520px;">{{subhead}}</p>
+
+        <a class="btn btn-primary" href="https://wa.me/51940124759" style="margin-top:14px; padding:16px 36px; font-size:14px; letter-spacing:0.06em; text-transform:uppercase;">Consultar ahora</a>
+
+        <div style="display:flex; gap:8px; margin-top:36px;">
+          <sc-for list="{{dots}}" as="dot" hint-placeholder-count="3">
+            <div style="{{dot.dotStyle}}" onClick="{{dot.onClick}}" role="button" aria-label="Cambiar mensaje"></div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LA FIRMA -->
+  <div style="background:#FAF7F2; border-top:1px solid; border-image:linear-gradient(90deg, rgba(216,30,44,0) 0%, rgba(216,30,44,0.35) 50%, rgba(216,30,44,0) 100%) 1; padding:64px 24px;">
+    <div class="container" style="max-width:720px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:14px;">
+      <div style="font-family:'Space Mono', monospace; font-weight:700; font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:var(--red);">El estudio</div>
+      <div style="width:22px; height:2px; background:var(--red);"></div>
+      <p style="font-size:16.5px; line-height:1.75; color:#6B6259; margin-top:8px;">
+        Somos un estudio de asesoría legal en Lima especializado en la defensa de conductores frente a papeletas de tránsito. Evaluamos cada caso para detectar vicios de forma o de fondo y te representamos ante la entidad correspondiente, ya sea una impugnación, una suspensión de licencia o un procedimiento de ejecución coactiva.
+      </p>
+    </div>
+  </div>
+
+  <!-- CONÓCENOS -->
+  <div class="two-col-grid" style="display:grid; grid-template-columns:1fr 1fr;">
+    <div style="position:relative; min-height:440px; background:linear-gradient(135deg, #2A2019 0%, #17110D 100%); overflow:hidden; display:flex; align-items:center; justify-content:center;">
+      <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#FFF8F5" stroke-width="1" style="opacity:0.1;"><path d="M4 21V7l8-4 8 4v14"></path><path d="M9 21v-6h6v6"></path><path d="M9 11h.01M9 15h.01M15 11h.01M15 15h.01"></path></svg>
+      <div style="position:absolute; left:26px; bottom:20px; font-family:'Space Mono', monospace; font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(250,247,242,0.55);">Foto del local — próximamente</div>
+    </div>
+    <div style="background:var(--red); padding:56px; display:flex; flex-direction:column; justify-content:center; gap:18px;">
+      <h2 style="color:#FFF8F5; font-size:clamp(26px, 3vw, 34px); text-transform:uppercase; letter-spacing:0.01em;">Conócenos</h2>
+      <p style="color:#FFE3DB; font-size:15px; line-height:1.75;">Atendemos desde Comas, Lima, pero mientras dure la remodelación de nuestro local trabajamos 100% de forma virtual: podemos revisar tu papeleta sin importar en qué distrito o ciudad te encuentres.</p>
+      <p style="color:#FFE3DB; font-size:15px; line-height:1.75;">Nuestro enfoque es simple: revisamos cada caso a fondo, identificamos los vicios que pueden anular una papeleta y te acompañamos en todo el trámite, desde la impugnación hasta el cierre del expediente.</p>
+      <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:10px;">
+        <a class="btn btn-ghost-light" href="#como-funciona">Cómo trabajamos</a>
+        <a class="btn btn-ghost-light" href="https://wa.me/51940124759">Contáctanos</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMO FUNCIONA -->
+  <div id="como-funciona" class="section-pad" style="padding-top:80px; padding-bottom:80px; background:#1B1512; color:#FAF7F2;">
+    <div class="container">
+      <div class="eyebrow" style="color:#E2795E;">Procedimiento</div>
+      <h2 style="font-size:clamp(28px, 3.4vw, 40px); color:#FFF8F5; margin-top:10px; max-width:600px;">Así se abre y se resuelve tu expediente</h2>
+      <div class="steps-grid" style="display:grid; grid-template-columns:repeat(4, 1fr); gap:28px; margin-top:48px;">
+        <div>
+          <div class="step-num">01</div>
+          <h3 style="font-size:18px; color:#FFF8F5; margin-top:14px;">Nos envías tu papeleta</h3>
+          <p style="font-size:14.5px; color:#C9BBA4; margin-top:8px;">Una foto por WhatsApp basta para empezar a revisarla.</p>
+        </div>
+        <div>
+          <div class="step-num">02</div>
+          <h3 style="font-size:18px; color:#FFF8F5; margin-top:14px;">Evaluamos el caso</h3>
+          <p style="font-size:14.5px; color:#C9BBA4; margin-top:8px;">Buscamos vicios de forma, de fondo y plazos vencidos.</p>
+        </div>
+        <div>
+          <div class="step-num">03</div>
+          <h3 style="font-size:18px; color:#FFF8F5; margin-top:14px;">Presentamos el recurso</h3>
+          <p style="font-size:14.5px; color:#C9BBA4; margin-top:8px;">Impugnación o apelación ante la entidad correspondiente.</p>
+        </div>
+        <div>
+          <div class="step-num">04</div>
+          <h3 style="font-size:18px; color:#FFF8F5; margin-top:14px;">Te avisamos el resultado</h3>
+          <p style="font-size:14.5px; color:#C9BBA4; margin-top:8px;">Seguimiento hasta el cierre del expediente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICIOS -->
+  <div id="servicios" class="section-pad" style="padding-top:80px; padding-bottom:80px;">
+    <div class="container" style="text-align:center;">
+      <div class="eyebrow">Servicios</div>
+      <div style="width:22px; height:2px; background:var(--red); margin:10px auto 0;"></div>
+
+      <div class="services-grid" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:44px 32px; margin-top:48px;">
+
+        <div>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto;"><path d="M12 3v18"></path><path d="M5 8l-3 6a3.5 3.5 0 0 0 6 0z"></path><path d="M19 8l-3 6a3.5 3.5 0 0 0 6 0z"></path><path d="M5 8h14"></path><path d="M9 21h6"></path></svg>
+          <h3 style="font-size:14.5px; text-transform:uppercase; letter-spacing:0.05em; margin-top:18px;">Impugnación y prescripción</h3>
+          <p style="font-size:14px; color:#6B6259; margin-top:10px; max-width:240px; margin-left:auto; margin-right:auto;">Revisamos si tu papeleta tiene errores que la invalidan o si ya prescribió.</p>
+        </div>
+
+        <div>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto;"><rect x="4" y="5" width="16" height="14" rx="2"></rect><path d="M8 3v4M16 3v4"></path><path d="M8.5 13.5l2.2 2.2L15.5 11"></path></svg>
+          <h3 style="font-size:14.5px; text-transform:uppercase; letter-spacing:0.05em; margin-top:18px;">Licencias de conducir</h3>
+          <p style="font-size:14px; color:#6B6259; margin-top:10px; max-width:240px; margin-left:auto; margin-right:auto;">Casos de suspensión o cancelación por M01, M04 o acumulación de puntos.</p>
+        </div>
+
+        <div>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto;"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.2 2"></path></svg>
+          <h3 style="font-size:14.5px; text-transform:uppercase; letter-spacing:0.05em; margin-top:18px;">Ejecución coactiva</h3>
+          <p style="font-size:14px; color:#6B6259; margin-top:10px; max-width:240px; margin-left:auto; margin-right:auto;">Te orientamos frente a procedimientos de tránsito y transporte ya iniciados.</p>
+        </div>
+
+      </div>
+
+      <a class="btn btn-outline" href="https://wa.me/51940124759" style="margin-top:48px; font-size:13px; letter-spacing:0.05em; text-transform:uppercase; padding:14px 30px;">Consultar mi caso</a>
+    </div>
+  </div>
+
+  <!-- CHARLA GRATUITA -->
+  <div style="padding:36px 0;">
+    <div class="container" style="padding-top:0; padding-bottom:0;">
+      <div style="background:var(--red); border-radius:4px; padding:38px 42px; display:flex; justify-content:space-between; align-items:center; gap:24px;" class="stack-mobile">
+        <div>
+          <div style="font-family:'Space Mono', monospace; font-size:11.5px; letter-spacing:0.12em; text-transform:uppercase; color:#FFD9CF;">Charla informativa gratuita</div>
+          <h3 style="color:#FFF8F5; font-size:24px; margin-top:8px;">Impugnación y prescripción de papeletas · por Google Meet</h3>
+          <p style="color:#FFE3DB; font-size:14.5px; margin-top:6px;">Cupos limitados, ingreso libre. Fecha y hora: <strong>[por confirmar]</strong>.</p>
+        </div>
+        <a class="btn btn-ghost-light" href="https://wa.me/51940124759" style="flex-shrink:0;">Reservar mi cupo</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- EQUIPO -->
+  <div id="equipo" class="two-col-grid" style="display:grid; grid-template-columns:1fr 1fr;">
+    <div style="background:#1B1512; padding:56px; display:flex; flex-direction:column; justify-content:center; gap:16px;">
+      <div class="eyebrow" style="color:#E2795E;">Equipo</div>
+      <h2 style="color:#FFF8F5; font-size:clamp(24px, 2.6vw, 30px); text-transform:uppercase; line-height:1.3; letter-spacing:0.01em;">Un equipo que conoce el<br>derecho de tránsito</h2>
+      <p style="color:#C9BBA4; font-size:15px; line-height:1.75; margin-top:6px;">El <strong style="color:#FFF8F5;">Abog. Genaro Dueñas Anchante</strong>, especialista en Derecho Administrativo, lidera los casos de impugnación, licencias y ejecución coactiva. Lo acompaña la <strong style="color:#FFF8F5;">Abog. Milu Mejía Obregón</strong>, en charlas informativas y atención a casos.</p>
+      <p style="color:#C9BBA4; font-size:15px; line-height:1.75;">Somos un estudio joven en redes: preferimos que veas cómo trabajamos en una charla gratuita o una primera consulta, antes de pedirte que nos creas por reseñas.</p>
+      <a class="btn btn-ghost-light" href="https://wa.me/51940124759" style="margin-top:10px; align-self:flex-start;">Escríbele al equipo</a>
+    </div>
+
+    <div style="position:relative;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; height:100%; min-height:420px;">
+        <div style="position:relative; background:#EDE5D8; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+          <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#1B1512" stroke-width="1" style="opacity:0.16;"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.6-4 5-6 8-6s6.4 2 8 6"></path></svg>
+          <div style="position:absolute; left:0; right:0; bottom:0; background:linear-gradient(0deg, rgba(27,21,18,0.85), transparent); padding:20px 18px 16px;">
+            <p style="color:#FFF8F5; font-size:13.5px; font-weight:700;">Genaro Dueñas Anchante</p>
+            <p style="color:#E2C9BE; font-size:11px; margin-top:2px; text-transform:uppercase; letter-spacing:0.04em;">Derecho Administrativo</p>
+          </div>
+        </div>
+        <div style="position:relative; background:#E3DACB; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+          <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#1B1512" stroke-width="1" style="opacity:0.16;"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.6-4 5-6 8-6s6.4 2 8 6"></path></svg>
+          <div style="position:absolute; left:0; right:0; bottom:0; background:linear-gradient(0deg, rgba(27,21,18,0.85), transparent); padding:20px 18px 16px;">
+            <p style="color:#FFF8F5; font-size:13.5px; font-weight:700;">Milu Mejía Obregón</p>
+            <p style="color:#E2C9BE; font-size:11px; margin-top:2px; text-transform:uppercase; letter-spacing:0.04em;">Asesoría en tránsito</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); background:var(--red); padding:18px 26px; display:flex; align-items:center; gap:16px; box-shadow:0 10px 30px -10px rgba(0,0,0,0.4);">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFF8F5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M12 3 2 8l10 5 10-5z"></path><path d="M6 10.5V16c0 1.1 2.7 2 6 2s6-.9 6-2v-5.5"></path><path d="M22 8v6"></path></svg>
+        <p style="color:#FFF8F5; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.03em; line-height:1.45;">Especialistas en Derecho<br>Administrativo y de Tránsito</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div id="preguntas" class="section-pad" style="padding-top:80px; padding-bottom:80px; background:#F1ECE3;">
+    <div class="container" style="max-width:820px;">
+      <div class="eyebrow">Preguntas frecuentes</div>
+      <h2 style="font-size:clamp(28px, 3.4vw, 40px); margin-top:10px;">Antes de escribirnos</h2>
+
+      <div style="margin-top:38px; display:flex; flex-direction:column; gap:0;">
+        <details class="faq" open style="border-bottom:1px solid #DCD1BF; padding:20px 0;">
+          <summary style="display:flex; justify-content:space-between; align-items:center; font-size:17px; font-weight:600;">
+            ¿Cuánto tiempo tengo para reclamar una papeleta?
+            <span class="faq-plus" style="font-size:22px; color:var(--red); font-weight:400;">+</span>
+          </summary>
+          <p style="font-size:15px; color:#4A433C; margin-top:14px; max-width:640px;">Depende de la fecha de notificación y de la entidad que la emitió. Cuéntanos la fecha de tu papeletas y te decimos si aún estás a tiempo.</p>
+        </details>
+
+        <details class="faq" style="border-bottom:1px solid #DCD1BF; padding:20px 0;">
+          <summary style="display:flex; justify-content:space-between; align-items:center; font-size:17px; font-weight:600;">
+            ¿La consulta inicial tiene costo?
+            <span class="faq-plus" style="font-size:22px; color:var(--red); font-weight:400;">+</span>
+          </summary>
+          <p style="font-size:15px; color:#4A433C; margin-top:14px; max-width:640px;">[Por confirmar con el estudio — indicar aquí si la primera evaluación es gratuita o tiene un costo fijo.]</p>
+        </details>
+
+        <details class="faq" style="border-bottom:1px solid #DCD1BF; padding:20px 0;">
+          <summary style="display:flex; justify-content:space-between; align-items:center; font-size:17px; font-weight:600;">
+            ¿Atienden fuera de Lima?
+            <span class="faq-plus" style="font-size:22px; color:var(--red); font-weight:400;">+</span>
+          </summary>
+          <p style="font-size:15px; color:#4A433C; margin-top:14px; max-width:640px;">La atención es 100% virtual mientras dure la remodelación del local, así que podemos revisar tu caso sin importar en qué ciudad estés.</p>
+        </details>
+
+        <details class="faq" style="padding:20px 0;">
+          <summary style="display:flex; justify-content:space-between; align-items:center; font-size:17px; font-weight:600;">
+            ¿Me pueden cancelar la licencia por puntos acumulados?
+            <span class="faq-plus" style="font-size:22px; color:var(--red); font-weight:400;">+</span>
+          </summary>
+          <p style="font-size:15px; color:#4A433C; margin-top:14px; max-width:640px;">Sí, puede pasar por acumulación de puntos o por infracciones como M01 y M04. Te asesoramos sobre tus opciones antes de que eso ocurra.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACTO: llamado a la acción -->
+  <div id="contacto" class="section-pad" style="padding-top:80px; padding-bottom:56px; text-align:center;">
+    <div class="container" style="max-width:620px;">
+      <h2 style="font-size:clamp(22px, 2.6vw, 30px); color:var(--red); text-transform:uppercase; letter-spacing:0.01em;">¿Tienes una consulta para nosotros?</h2>
+      <p style="font-size:16px; color:#6B6259; margin-top:18px; line-height:1.75;">Escríbenos por WhatsApp y te contamos, sin compromiso, qué opciones tienes con tu papeleta.</p>
+      <a class="btn btn-primary" href="https://wa.me/51940124759" style="margin-top:30px; text-transform:uppercase; letter-spacing:0.04em; font-size:14px; padding:16px 34px;">Contáctanos</a>
+    </div>
+  </div>
+
+  <!-- UBICACIÓN -->
+  <div class="two-col-grid" style="display:grid; grid-template-columns:0.9fr 1.1fr;">
+    <div style="position:relative; min-height:300px; background:linear-gradient(135deg, #2A2019 0%, #17110D 100%); display:flex; align-items:center; justify-content:center; overflow:hidden;">
+      <svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="#FFF8F5" stroke-width="1" style="opacity:0.14;"><path d="M12 21s7-6.4 7-12a7 7 0 0 0-14 0c0 5.6 7 12 7 12z"></path><circle cx="12" cy="9" r="2.4"></circle></svg>
+      <div style="position:absolute; left:24px; bottom:18px; font-family:'Space Mono', monospace; font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(250,247,242,0.5);">Comas, Lima — foto próximamente</div>
+    </div>
+    <div style="background:var(--red); padding:44px; display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+      <div>
+        <p style="color:#FFF8F5; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;">Nuestra oficina</p>
+        <p style="color:#FFE3DB; font-size:14.5px; line-height:1.7; margin-top:12px;">Av. Túpac Amaru 530<br>Comas, Lima, Perú</p>
+        <p style="color:#FFC9BF; font-size:12.5px; margin-top:8px;">Atención presencial suspendida temporalmente por remodelación</p>
+        <a class="btn btn-ghost-light" href="https://www.google.com/maps/search/?api=1&query=Av.+Tupac+Amaru+530+Comas+Lima+Peru" style="margin-top:18px; font-size:12px; padding:10px 18px;">Ver mapa</a>
+      </div>
+      <div>
+        <p style="color:#FFF8F5; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;">Escríbenos</p>
+        <p style="margin-top:12px;"><a href="https://wa.me/51940124759" style="color:#FFE3DB; font-size:14.5px; font-weight:600;">+51 940 124 759</a></p>
+        <p style="margin-top:6px;"><a href="mailto:mdasesorialegal@gmail.com" style="color:#FFE3DB; font-size:14.5px; font-weight:600;">mdasesorialegal@gmail.com</a></p>
+        <p style="color:#FFC9BF; font-size:12.5px; margin-top:10px;">Horario: <strong style="color:#FFE3DB;">[por confirmar]</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="background:#1B1512; padding:52px 0 28px;">
+    <div class="container footer-grid" style="display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:36px;">
+      <div>
+        <span style="font-family:'Zilla Slab', serif; font-weight:700; font-size:22px;">
+          <span style="color:#FFF8F5;">M</span><span style="color:var(--red);">D</span>
+        </span>
+        <span style="font-family:'Space Mono', monospace; font-size:10.5px; letter-spacing:0.12em; text-transform:uppercase; color:#8A8074; margin-left:8px;">Asesoría Legal</span>
+        <p style="font-size:13.5px; color:#8A8074; margin-top:14px; max-width:280px;">Reclamo y defensa frente a papeletas de tránsito en Lima. Atención 100% virtual mientras remodelamos nuestro local en Comas.</p>
+      </div>
+      <div>
+        <p style="font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#6B6259; margin-bottom:14px;">Navegación</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <a class="footer-link" href="#servicios">Servicios</a>
+          <a class="footer-link" href="#equipo">Equipo</a>
+          <a class="footer-link" href="#preguntas">Preguntas frecuentes</a>
+          <a class="footer-link" href="#contacto">Contacto</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#6B6259; margin-bottom:14px;">Contacto</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <a class="footer-link" href="https://wa.me/51940124759">+51 940 124 759</a>
+          <a class="footer-link" href="mailto:mdasesorialegal@gmail.com">mdasesorialegal@gmail.com</a>
+          <a class="footer-link" href="https://www.facebook.com/Reclamodepapeletas/?locale=es_LA">Facebook</a>
+        </div>
+      </div>
+    </div>
+    <div class="container" style="margin-top:40px; padding-top:20px; border-top:1px solid #33291F; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+      <p style="font-size:12.5px; color:#6B6259;">© 2026 MD Asesoría Legal. Av. Túpac Amaru 530, Comas, Lima.</p>
+      <p style="font-size:12.5px; color:#6B6259;">RUC [por confirmar]</p>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#D81E2C","options":["#D81E2C","#A6141F","#8C0F1B"],"section":"Marca"}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { slide: 0 };
+    this.slides = [
+      { eyebrow: 'Multas de tránsito', h1: 'TU PAPELETA', h2: 'TIENE SALIDA', sub: 'Asesoría legal para impugnar multas de tránsito en Lima' },
+      { eyebrow: 'Licencia de conducir', h1: 'PROTEGE TU', h2: 'LICENCIA', sub: 'Casos por infracción M01, M04 o acumulación de puntos' },
+      { eyebrow: 'Modalidad actual', h1: 'ATENCIÓN', h2: '100% VIRTUAL', sub: 'Resuelve tu caso sin salir de casa mientras remodelamos el local' }
+    ];
+  }
+  componentDidMount() {
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion) {
+      this._timer = setInterval(() => {
+        this.setState({ slide: (this.state.slide + 1) % this.slides.length });
+      }, 5500);
+    }
+  }
+  componentWillUnmount() {
+    if (this._timer) clearInterval(this._timer);
+  }
+  goTo(i) {
+    if (this._timer) clearInterval(this._timer);
+    this.setState({ slide: i });
+  }
+  renderVals() {
+    var i = this.state.slide;
+    var current = this.slides[i];
+    var self = this;
+    var dots = this.slides.map(function (s, idx) {
+      return {
+        dotStyle: idx === i
+          ? 'width:24px;height:8px;border-radius:4px;background:#FFF8F5;cursor:pointer;transition:all .25s ease;'
+          : 'width:8px;height:8px;border-radius:4px;background:rgba(255,248,245,0.32);cursor:pointer;transition:all .25s ease;',
+        onClick: function () { self.goTo(idx); }
+      };
+    });
+    return {
+      accent: this.props.accent ?? '#D81E2C',
+      eyebrow: current.eyebrow,
+      headlineLine1: current.h1,
+      headlineLine2: current.h2,
+      subhead: current.sub,
+      dots: dots
+    };
+  }
+}
+</script>
+</body>
+</html>
