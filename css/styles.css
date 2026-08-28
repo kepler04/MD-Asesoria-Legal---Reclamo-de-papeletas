@@ -592,7 +592,18 @@ button { font: inherit; }
 .location__address { color: #FFE3DB; font-size: 16px; line-height: 1.7; margin-top: 12px; }
 .location__note { color: #FFC9BF; font-size: 12.5px; margin-top: 8px; }
 .location__note strong { color: #FFE3DB; }
-.location__panel .btn { margin-top: 18px; }
+.location__map {
+  margin-top: 16px;
+  width: 100%;
+  max-width: 300px;
+  height: 170px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 248, 245, 0.3);
+  background: #FFF8F5;
+}
+.location__map iframe { width: 100%; height: 100%; display: block; }
+.location__panel .btn { margin-top: 14px; }
 .location__link { color: #FFE3DB; font-size: 14.5px; font-weight: 600; }
 .location__link:hover { color: #FFF8F5; }
 .location__panel > div:last-child > p { margin-top: 12px; }
