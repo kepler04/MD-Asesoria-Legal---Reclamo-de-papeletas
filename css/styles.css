@@ -376,7 +376,7 @@ button { font: inherit; }
    EL ESTUDIO
    ========================================================================== */
 .about {
-  background: var(--color-paper);
+  background: var(--color-paper-2);
   border-top: 1px solid;
   border-image: linear-gradient(90deg, rgba(216, 30, 44, 0) 0%, rgba(216, 30, 44, 0.35) 50%, rgba(216, 30, 44, 0) 100%) 1;
   padding: 64px 24px;
@@ -566,14 +566,30 @@ button { font: inherit; }
   position: relative;
   background: linear-gradient(160deg, #EDE5D8 0%, #DCD0BC 100%);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  padding-top: 64px;
   overflow: hidden;
   color: var(--color-navy);
 }
 .team__photo--alt { background: linear-gradient(160deg, #E3DACB 0%, #D2C4AC 100%); }
-.team__photo-icon { width: 100px; height: 100px; opacity: 0.22; }
 .team__photo .placeholder-tag { position: absolute; top: 14px; right: 14px; color: rgba(44, 58, 77, 0.55); }
+.team__avatar {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  background: var(--color-navy);
+  color: #FFF8F5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 34px;
+  letter-spacing: 0.03em;
+  box-shadow: 0 10px 24px -10px rgba(27, 21, 18, 0.35);
+}
+.team__photo--alt .team__avatar { background: var(--color-red-dark); }
 .team__caption {
   position: absolute;
   left: 0; right: 0; bottom: 0;
@@ -786,8 +802,8 @@ button { font: inherit; }
 .process__step { transition: transform 0.25s ease, border-color 0.25s ease; }
 .process__step:hover { transform: translateY(-4px); border-color: rgba(255, 248, 245, 0.25); }
 
-.team__photo-icon { transition: transform 0.4s ease; }
-.team__photo:hover .team__photo-icon { transform: scale(1.08); }
+.team__avatar { transition: transform 0.4s ease; }
+.team__photo:hover .team__avatar { transform: scale(1.08); }
 .know-us__media img,
 .location__media img { transition: transform 0.4s ease; }
 .know-us__media:hover img,
