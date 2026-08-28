@@ -614,6 +614,25 @@ button { font: inherit; }
 .team__badge p { color: #FFF8F5; font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; line-height: 1.45; }
 
 /* ==========================================================================
+   TESTIMONIOS
+   ========================================================================== */
+.testimonials { padding: 80px 0; }
+.testimonials__empty {
+  max-width: 620px;
+  margin: var(--space-4) auto 0;
+  padding: var(--space-4) var(--space-3);
+  border: 1.5px dashed var(--color-border);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.testimonials__quote-icon { width: 32px; height: 32px; color: var(--color-red); opacity: 0.55; }
+.testimonials__empty p { font-size: 16.5px; color: var(--color-muted); line-height: 1.75; max-width: 460px; }
+.testimonials__empty .placeholder-tag { color: var(--color-muted-2); }
+
+/* ==========================================================================
    FAQ
    ========================================================================== */
 .faq { padding: 80px 0; background: var(--color-paper-2); }
