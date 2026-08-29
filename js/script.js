@@ -235,16 +235,22 @@
   }
 
   /* ------------------------------------------------------------------
-   * Procedimiento: el riel se ilumina de rojo al llegar a la sección
-   * y luego responde a los clics — tocar un paso mueve el avance del
-   * trámite hasta ahí.
+   * Procedimiento: mientras nadie interactúa, el riel se reproduce solo
+   * en bucle (recorre los 4 pasos, se mantiene 5s en el último y
+   * reinicia) — pensado para móvil, donde no existe hover. En equipos
+   * con mouse, pasar el cursor sobre un paso lo activa al instante. En
+   * cualquier dispositivo, tocar/clickear un paso toma el control y
+   * detiene el bucle automático.
    * ------------------------------------------------------------------ */
   var processRail = document.querySelector('.process__rail-wrap');
   if (processRail) {
     var processReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var processHoverCapable = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     var processSteps = Array.prototype.slice.call(processRail.querySelectorAll('.process__step'));
     var processSegments = Array.prototype.slice.call(processRail.querySelectorAll('.process__rail-segment'));
-    var processAutoplayTimers = [];
+    var processTimers = [];
+    var processInteracted = false;
+    var processVisible = false;
 
     function applyProcessStep(targetIndex) {
       processSteps.forEach(function (step, index) {
@@ -256,24 +262,48 @@
       });
     }
 
-    // Llamado por clics/teclado: interrumpe la intro automática si sigue
-    // en curso y salta directo al paso elegido.
-    function setProcessStep(targetIndex) {
-      processAutoplayTimers.forEach(function (id) { window.clearTimeout(id); });
-      processAutoplayTimers = [];
-      applyProcessStep(targetIndex);
+    function clearProcessTimers() {
+      processTimers.forEach(function (id) { window.clearTimeout(id); });
+      processTimers = [];
     }
 
-    function playProcessIntro() {
-      if (processReducedMotion) {
-        applyProcessStep(processSteps.length - 1);
-        return;
-      }
+    // Recorre los 4 pasos y, si se le pasa onComplete, lo llama tras
+    // mantenerse ~5s en el último paso (para encadenar el bucle).
+    function playProcessSequence(onComplete) {
       processSteps.forEach(function (step, index) {
         var id = window.setTimeout(function () {
           applyProcessStep(index);
         }, 350 + index * 320);
-        processAutoplayTimers.push(id);
+        processTimers.push(id);
+      });
+      if (onComplete) {
+        var holdUntil = 350 + (processSteps.length - 1) * 320 + 5000;
+        var id2 = window.setTimeout(onComplete, holdUntil);
+        processTimers.push(id2);
+      }
+    }
+
+    function runAutoplayLoop() {
+      if (processReducedMotion || processInteracted || !processVisible) return;
+      playProcessSequence(function () {
+        if (processReducedMotion || processInteracted || !processVisible) return;
+        applyProcessStep(-1);
+        var id = window.setTimeout(runAutoplayLoop, 450);
+        processTimers.push(id);
+      });
+    }
+
+    // Llamado por hover/clic/teclado: toma el control manual y detiene
+    // el bucle automático para siempre (en esta carga de página).
+    function setProcessStep(targetIndex) {
+      processInteracted = true;
+      clearProcessTimers();
+      applyProcessStep(targetIndex);
+    }
+
+    if (processHoverCapable) {
+      processSteps.forEach(function (step, index) {
+        step.addEventListener('mouseenter', function () { setProcessStep(index); });
       });
     }
 
@@ -292,16 +322,28 @@
     });
 
     if ('IntersectionObserver' in window) {
-      var processObserver = new IntersectionObserver(function (entries, observer) {
+      var processObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          playProcessIntro();
-          observer.unobserve(entry.target);
+          processVisible = entry.isIntersecting;
+          if (processVisible) {
+            if (processReducedMotion) {
+              applyProcessStep(processSteps.length - 1);
+            } else if (!processInteracted) {
+              runAutoplayLoop();
+            }
+          } else {
+            clearProcessTimers();
+          }
         });
       }, { threshold: 0.35 });
       processObserver.observe(processRail);
     } else {
-      playProcessIntro();
+      processVisible = true;
+      if (processReducedMotion) {
+        applyProcessStep(processSteps.length - 1);
+      } else {
+        runAutoplayLoop();
+      }
     }
   }
 
