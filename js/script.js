@@ -235,45 +235,73 @@
   }
 
   /* ------------------------------------------------------------------
-   * Procedimiento: el riel se ilumina de rojo paso a paso al llegar
-   * a la sección, mostrando el avance del trámite.
+   * Procedimiento: el riel se ilumina de rojo al llegar a la sección
+   * y luego responde a los clics — tocar un paso mueve el avance del
+   * trámite hasta ahí.
    * ------------------------------------------------------------------ */
   var processRail = document.querySelector('.process__rail-wrap');
   if (processRail) {
     var processReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var processSteps = processRail.querySelectorAll('.process__step');
-    var processSegments = processRail.querySelectorAll('.process__rail-segment');
+    var processSteps = Array.prototype.slice.call(processRail.querySelectorAll('.process__step'));
+    var processSegments = Array.prototype.slice.call(processRail.querySelectorAll('.process__rail-segment'));
+    var processAutoplayTimers = [];
 
-    function lightProcessRail() {
-      var sequence = [];
+    function applyProcessStep(targetIndex) {
       processSteps.forEach(function (step, index) {
-        sequence.push(step);
-        if (processSegments[index]) sequence.push(processSegments[index]);
+        step.classList.toggle('is-lit', index < targetIndex);
+        step.classList.toggle('is-active', index === targetIndex);
       });
-
-      if (processReducedMotion) {
-        sequence.forEach(function (el) { el.classList.add('is-lit'); });
-        return;
-      }
-
-      sequence.forEach(function (el, index) {
-        window.setTimeout(function () {
-          el.classList.add('is-lit');
-        }, 450 + index * 260);
+      processSegments.forEach(function (segment, index) {
+        segment.classList.toggle('is-lit', index < targetIndex);
       });
     }
+
+    // Llamado por clics/teclado: interrumpe la intro automática si sigue
+    // en curso y salta directo al paso elegido.
+    function setProcessStep(targetIndex) {
+      processAutoplayTimers.forEach(function (id) { window.clearTimeout(id); });
+      processAutoplayTimers = [];
+      applyProcessStep(targetIndex);
+    }
+
+    function playProcessIntro() {
+      if (processReducedMotion) {
+        applyProcessStep(processSteps.length - 1);
+        return;
+      }
+      processSteps.forEach(function (step, index) {
+        var id = window.setTimeout(function () {
+          applyProcessStep(index);
+        }, 350 + index * 320);
+        processAutoplayTimers.push(id);
+      });
+    }
+
+    processSteps.forEach(function (step, index) {
+      step.setAttribute('tabindex', '0');
+      step.setAttribute('role', 'button');
+      step.setAttribute('aria-label', 'Ver paso ' + (index + 1) + ' de ' + processSteps.length);
+
+      step.addEventListener('click', function () { setProcessStep(index); });
+      step.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          setProcessStep(index);
+        }
+      });
+    });
 
     if ('IntersectionObserver' in window) {
       var processObserver = new IntersectionObserver(function (entries, observer) {
         entries.forEach(function (entry) {
           if (!entry.isIntersecting) return;
-          lightProcessRail();
+          playProcessIntro();
           observer.unobserve(entry.target);
         });
       }, { threshold: 0.35 });
       processObserver.observe(processRail);
     } else {
-      lightProcessRail();
+      playProcessIntro();
     }
   }
 

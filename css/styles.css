@@ -529,9 +529,15 @@ button { font: inherit; }
 .process__step.is-lit .process__node {
   background: var(--color-red);
   border-color: var(--color-red);
-  box-shadow: 0 0 0 6px rgba(216, 30, 44, 0.14);
 }
 .process__step.is-lit .process__node-num { color: #FFF8F5; }
+
+.process__step.is-active .process__node {
+  background: var(--color-ink);
+  border-color: var(--color-red);
+  box-shadow: 0 0 0 3px var(--color-red) inset, 0 0 0 7px rgba(216, 30, 44, 0.18);
+}
+.process__step.is-active .process__node-num { color: var(--color-red); }
 
 .process__card {
   margin-top: 24px;
@@ -541,12 +547,14 @@ button { font: inherit; }
   border-radius: 4px;
   padding: var(--space-3) var(--space-2);
 }
-.process__step.is-lit .process__card {
+.process__step.is-active .process__card {
   border-color: rgba(216, 30, 44, 0.4);
   background: rgba(255, 248, 245, 0.045);
 }
 .process__step-icon { width: 26px; height: 26px; color: #8A8074; margin: 0 auto; transition: color 0.4s ease, transform 0.35s ease; }
-.process__step.is-lit .process__step-icon { color: var(--color-red); }
+.process__step.is-lit .process__step-icon,
+.process__step.is-active .process__step-icon { color: var(--color-red); }
+.process__step { cursor: pointer; }
 .process__card h3 { font-size: 16px; color: #FFF8F5; margin-top: 16px; font-family: var(--font-body); font-weight: 600; }
 .process__card p { font-size: 14.5px; color: #C9BBA4; margin-top: 8px; line-height: 1.6; }
 
