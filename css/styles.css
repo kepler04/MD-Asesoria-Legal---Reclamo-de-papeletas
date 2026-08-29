@@ -142,8 +142,21 @@ button { font: inherit; }
   transition: transform 0.12s ease, background 0.15s ease, color 0.15s ease;
 }
 .btn:hover { transform: translateY(-1px); }
-.btn-primary { background: var(--color-red); color: #FFF8F5; }
+.btn-primary { position: relative; overflow: hidden; background: var(--color-red); color: #FFF8F5; }
 .btn-primary:hover { background: var(--color-red-dark); color: #FFF8F5; }
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.55s ease;
+  pointer-events: none;
+}
+.btn-primary:hover::after { left: 130%; }
 .btn-ghost-light { background: transparent; color: #FAF7F2; border-color: rgba(250, 247, 242, 0.55); }
 .btn-ghost-light:hover { background: #FAF7F2; color: var(--color-ink); }
 .btn-outline { background: transparent; color: var(--color-red); border-color: var(--color-red); }
@@ -202,6 +215,11 @@ button { font: inherit; }
 .hero-wrap {
   position: relative;
   overflow: hidden;
+}
+.hero-wrap__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   background-image:
     linear-gradient(100deg, rgba(46, 9, 12, 0.8) 0%, rgba(46, 9, 12, 0.64) 45%, rgba(60, 12, 15, 0.4) 75%, rgba(46, 9, 12, 0.52) 100%),
     radial-gradient(120% 100% at 100% 30%, rgba(216, 30, 44, 0.22) 0%, rgba(216, 30, 44, 0) 60%),
@@ -209,6 +227,12 @@ button { font: inherit; }
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  transform: scale(1.1);
+  animation: heroKenBurns 9s ease-out forwards;
+}
+@keyframes heroKenBurns {
+  from { transform: scale(1.1); }
+  to { transform: scale(1); }
 }
 
 .navbar {
@@ -384,6 +408,45 @@ button { font: inherit; }
   letter-spacing: 0.03em;
 }
 .trust-bar__item svg { width: 20px; height: 20px; color: var(--color-accent-warm); flex-shrink: 0; }
+
+/* ==========================================================================
+   NAV FIJO (aparece al hacer scroll)
+   ========================================================================== */
+.compact-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 60;
+  background: rgba(23, 17, 13, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 24px -10px rgba(0, 0, 0, 0.45);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-12px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+}
+.compact-nav--visible {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s;
+}
+.compact-nav__row { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 28px; }
+.compact-nav__brand img { height: 32px; width: auto; display: block; }
+.compact-nav__links { display: flex; align-items: center; gap: 24px; }
+.compact-nav__links a {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #E7DFD3;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.compact-nav__links a:hover { color: #FFC9BF; }
+.compact-nav__cta { padding: 9px 20px; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.04em; flex-shrink: 0; }
+
+@media (max-width: 860px) {
+  .compact-nav { display: none; }
+}
 
 /* ==========================================================================
    EL ESTUDIO

@@ -131,17 +131,108 @@
   }
 
   /* ------------------------------------------------------------------
-   * FAQ: al abrir una pregunta, cierra las demás
+   * FAQ: acordeón animado (una sola pregunta abierta a la vez)
    * ------------------------------------------------------------------ */
   var faqItems = document.querySelectorAll('.faq__item');
-  faqItems.forEach(function (item) {
-    item.addEventListener('toggle', function () {
-      if (!item.open) return;
-      faqItems.forEach(function (other) {
-        if (other !== item) other.open = false;
+  var faqReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (faqReducedMotion || typeof Element.prototype.animate !== 'function') {
+    faqItems.forEach(function (item) {
+      item.addEventListener('toggle', function () {
+        if (!item.open) return;
+        faqItems.forEach(function (other) {
+          if (other !== item) other.open = false;
+        });
       });
     });
-  });
+  } else {
+    faqItems.forEach(function (item) {
+      item.dataset.animating = '';
+      var summary = item.querySelector('summary');
+
+      summary.addEventListener('click', function (event) {
+        event.preventDefault();
+        if (item.dataset.animating === 'true') return;
+
+        if (item.open) {
+          closeFaqItem(item);
+        } else {
+          faqItems.forEach(function (other) {
+            if (other !== item && other.open) closeFaqItem(other);
+          });
+          openFaqItem(item);
+        }
+      });
+    });
+  }
+
+  function openFaqItem(item) {
+    item.style.overflow = 'hidden';
+    var summaryHeight = item.querySelector('summary').offsetHeight;
+    item.open = true;
+    var fullHeight = item.scrollHeight;
+    item.style.height = summaryHeight + 'px';
+    runFaqAnimation(item, summaryHeight, fullHeight, true);
+  }
+
+  function closeFaqItem(item) {
+    item.style.overflow = 'hidden';
+    var startHeight = item.offsetHeight;
+    var summaryHeight = item.querySelector('summary').offsetHeight;
+    runFaqAnimation(item, startHeight, summaryHeight, false);
+  }
+
+  function runFaqAnimation(item, from, to, opening) {
+    if (item._faqAnim) item._faqAnim.cancel();
+    item.dataset.animating = 'true';
+    var anim = item.animate(
+      { height: [from + 'px', to + 'px'] },
+      { duration: 240, easing: 'ease' }
+    );
+    item._faqAnim = anim;
+    anim.onfinish = function () {
+      item._faqAnim = null;
+      item.style.height = '';
+      item.style.overflow = '';
+      item.dataset.animating = '';
+      if (!opening) item.open = false;
+    };
+    anim.oncancel = function () {
+      item._faqAnim = null;
+      item.dataset.animating = '';
+    };
+  }
+
+  /* ------------------------------------------------------------------
+   * Nav fijo: aparece al bajar, para no perder acceso a la navegación
+   * ------------------------------------------------------------------ */
+  var compactNav = document.getElementById('compactNav');
+  var heroWrap = document.querySelector('.hero-wrap');
+
+  if (compactNav && heroWrap) {
+    var compactNavThreshold = 0;
+
+    function updateCompactNavThreshold() {
+      var rect = heroWrap.getBoundingClientRect();
+      compactNavThreshold = window.scrollY + rect.bottom - 100;
+    }
+
+    updateCompactNavThreshold();
+    window.addEventListener('resize', updateCompactNavThreshold);
+
+    var compactNavTicking = false;
+    function onCompactNavScroll() {
+      if (compactNavTicking) return;
+      compactNavTicking = true;
+      window.requestAnimationFrame(function () {
+        compactNav.classList.toggle('compact-nav--visible', window.scrollY > compactNavThreshold);
+        compactNavTicking = false;
+      });
+    }
+
+    window.addEventListener('scroll', onCompactNavScroll, { passive: true });
+    onCompactNavScroll();
+  }
 
   /* ------------------------------------------------------------------
    * Revelado al hacer scroll: las secciones aparecen con un fade + subida
