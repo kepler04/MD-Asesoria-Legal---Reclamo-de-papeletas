@@ -505,7 +505,7 @@ button { font: inherit; }
 .process__rail-segment.is-lit { background: var(--color-red); }
 
 .process__steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); list-style: none; margin: 0; padding: 0; position: relative; }
-.process__step { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.process__step { display: flex; flex-direction: column; align-items: center; text-align: center; transition: opacity 0.35s ease; }
 
 .process__node {
   width: 44px;
@@ -517,7 +517,7 @@ button { font: inherit; }
   flex-shrink: 0;
   background: var(--color-ink);
   border: 1.5px solid rgba(255, 248, 245, 0.25);
-  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.35s ease, transform 0.35s ease;
 }
 .process__node-num {
   font-family: var(--font-display);
@@ -545,7 +545,7 @@ button { font: inherit; }
   border-color: rgba(216, 30, 44, 0.4);
   background: rgba(255, 248, 245, 0.045);
 }
-.process__step-icon { width: 26px; height: 26px; color: #8A8074; margin: 0 auto; transition: color 0.4s ease; }
+.process__step-icon { width: 26px; height: 26px; color: #8A8074; margin: 0 auto; transition: color 0.4s ease, transform 0.35s ease; }
 .process__step.is-lit .process__step-icon { color: var(--color-red); }
 .process__card h3 { font-size: 16px; color: #FFF8F5; margin-top: 16px; font-family: var(--font-body); font-weight: 600; }
 .process__card p { font-size: 14.5px; color: #C9BBA4; margin-top: 8px; line-height: 1.6; }
@@ -928,8 +928,30 @@ button { font: inherit; }
 .service__icon { transition: transform 0.25s ease, color 0.25s ease; }
 .service:hover .service__icon { transform: scale(1.12); color: var(--color-red-dark); }
 
-.process__card { transition: transform 0.25s ease, border-color 0.4s ease, background 0.4s ease; }
-.process__step:hover .process__card { transform: translateY(-4px); border-color: rgba(255, 248, 245, 0.3); }
+.process__card { transition: transform 0.3s ease, opacity 0.35s ease, border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease; }
+
+/* Al pasar el mouse por cualquier paso, los demás se atenúan y el
+   que tiene el foco se agranda con un brillo rojo más marcado */
+.process__steps:hover .process__step { opacity: 0.5; }
+.process__steps:hover .process__node { opacity: 0.5; }
+
+.process__steps .process__step:hover { opacity: 1; }
+.process__step:hover .process__node {
+  opacity: 1;
+  transform: scale(1.14);
+  box-shadow: 0 0 0 10px rgba(216, 30, 44, 0.2), 0 10px 24px -8px rgba(216, 30, 44, 0.55);
+}
+.process__step:hover .process__card {
+  opacity: 1;
+  transform: translateY(-8px) scale(1.035);
+  border-color: var(--color-red);
+  background: rgba(216, 30, 44, 0.1);
+  box-shadow: 0 24px 46px -20px rgba(216, 30, 44, 0.45);
+}
+.process__step:hover .process__step-icon {
+  color: var(--color-red);
+  transform: scale(1.12);
+}
 
 .team__avatar { transition: transform 0.4s ease; }
 .team__photo:hover .team__avatar { transform: scale(1.08); }
