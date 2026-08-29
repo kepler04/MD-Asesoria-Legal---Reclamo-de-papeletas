@@ -235,6 +235,49 @@
   }
 
   /* ------------------------------------------------------------------
+   * Procedimiento: el riel se ilumina de rojo paso a paso al llegar
+   * a la sección, mostrando el avance del trámite.
+   * ------------------------------------------------------------------ */
+  var processRail = document.querySelector('.process__rail-wrap');
+  if (processRail) {
+    var processReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var processSteps = processRail.querySelectorAll('.process__step');
+    var processSegments = processRail.querySelectorAll('.process__rail-segment');
+
+    function lightProcessRail() {
+      var sequence = [];
+      processSteps.forEach(function (step, index) {
+        sequence.push(step);
+        if (processSegments[index]) sequence.push(processSegments[index]);
+      });
+
+      if (processReducedMotion) {
+        sequence.forEach(function (el) { el.classList.add('is-lit'); });
+        return;
+      }
+
+      sequence.forEach(function (el, index) {
+        window.setTimeout(function () {
+          el.classList.add('is-lit');
+        }, 450 + index * 260);
+      });
+    }
+
+    if ('IntersectionObserver' in window) {
+      var processObserver = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          lightProcessRail();
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.35 });
+      processObserver.observe(processRail);
+    } else {
+      lightProcessRail();
+    }
+  }
+
+  /* ------------------------------------------------------------------
    * Revelado al hacer scroll: las secciones aparecen con un fade + subida
    * suave la primera vez que entran en pantalla.
    * ------------------------------------------------------------------ */

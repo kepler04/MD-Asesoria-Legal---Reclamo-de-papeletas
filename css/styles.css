@@ -487,34 +487,68 @@ button { font: inherit; }
    ========================================================================== */
 .process { padding: 80px 0; background: var(--color-ink); color: var(--color-paper); }
 .process .section-title { color: #FFF8F5; }
-.process__steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); margin-top: var(--space-4); }
-.process__step {
-  background: rgba(255, 248, 245, 0.04);
+
+.process__rail-wrap { position: relative; margin-top: var(--space-4); }
+.process__rail {
+  position: absolute;
+  top: 22px;
+  left: 11.6%;
+  right: 11.6%;
+  display: flex;
+}
+.process__rail-segment {
+  flex: 1;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, rgba(255, 248, 245, 0.18) 0 6px, transparent 6px 12px);
+  transition: background 0.5s ease;
+}
+.process__rail-segment.is-lit { background: var(--color-red); }
+
+.process__steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); list-style: none; margin: 0; padding: 0; position: relative; }
+.process__step { display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+.process__node {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--color-ink);
+  border: 1.5px solid rgba(255, 248, 245, 0.25);
+  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.process__node-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  color: rgba(255, 248, 245, 0.45);
+  transition: color 0.4s ease;
+}
+.process__step.is-lit .process__node {
+  background: var(--color-red);
+  border-color: var(--color-red);
+  box-shadow: 0 0 0 6px rgba(216, 30, 44, 0.14);
+}
+.process__step.is-lit .process__node-num { color: #FFF8F5; }
+
+.process__card {
+  margin-top: 24px;
+  width: 100%;
+  background: rgba(255, 248, 245, 0.02);
   border: 1px solid rgba(255, 248, 245, 0.1);
   border-radius: 4px;
   padding: var(--space-3) var(--space-2);
 }
-.process__icon-badge {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--color-navy);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
+.process__step.is-lit .process__card {
+  border-color: rgba(216, 30, 44, 0.4);
+  background: rgba(255, 248, 245, 0.045);
 }
-.process__icon-badge svg { width: 18px; height: 18px; color: #FFF8F5; }
-.process__num {
-  display: block;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 34px;
-  color: #EFE6D8;
-  -webkit-text-stroke: 1.5px var(--color-red);
-}
-.process__step h3 { font-size: 18px; color: #FFF8F5; margin-top: 14px; }
-.process__step p { font-size: 16px; color: #C9BBA4; margin-top: 8px; }
+.process__step-icon { width: 26px; height: 26px; color: #8A8074; margin: 0 auto; transition: color 0.4s ease; }
+.process__step.is-lit .process__step-icon { color: var(--color-red); }
+.process__card h3 { font-size: 16px; color: #FFF8F5; margin-top: 16px; font-family: var(--font-body); font-weight: 600; }
+.process__card p { font-size: 14.5px; color: #C9BBA4; margin-top: 8px; line-height: 1.6; }
 
 /* ==========================================================================
    SERVICIOS
@@ -894,8 +928,8 @@ button { font: inherit; }
 .service__icon { transition: transform 0.25s ease, color 0.25s ease; }
 .service:hover .service__icon { transform: scale(1.12); color: var(--color-red-dark); }
 
-.process__step { transition: transform 0.25s ease, border-color 0.25s ease; }
-.process__step:hover { transform: translateY(-4px); border-color: rgba(255, 248, 245, 0.25); }
+.process__card { transition: transform 0.25s ease, border-color 0.4s ease, background 0.4s ease; }
+.process__step:hover .process__card { transform: translateY(-4px); border-color: rgba(255, 248, 245, 0.3); }
 
 .team__avatar { transition: transform 0.4s ease; }
 .team__photo:hover .team__avatar { transform: scale(1.08); }
@@ -961,6 +995,7 @@ button { font: inherit; }
   .team__photos { min-height: 320px; }
 
   .process__steps { grid-template-columns: 1fr 1fr; }
+  .process__rail { display: none; }
   .services__grid { grid-template-columns: 1fr; }
   .news__grid { grid-template-columns: 1fr; }
   .video-grid { grid-template-columns: 1fr; }
