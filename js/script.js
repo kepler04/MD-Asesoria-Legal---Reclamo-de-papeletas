@@ -2,11 +2,13 @@
   'use strict';
 
   /* ------------------------------------------------------------------
-   * Menú a pantalla completa: dos botones (nav del hero y nav fijo)
-   * abren el mismo panel.
+   * Menú lateral: dos botones (nav del hero y nav fijo) abren el mismo
+   * panel. Se cierra con la X, con Escape, al tocar un enlace o al
+   * hacer clic en el velo que deja ver la página detrás.
    * ------------------------------------------------------------------ */
   var siteMenu = document.getElementById('siteMenu');
   var siteMenuClose = document.getElementById('siteMenuClose');
+  var siteMenuScrim = document.getElementById('siteMenuScrim');
   var menuToggles = Array.prototype.slice.call(document.querySelectorAll('#navToggle, #compactNavToggle'));
   var lastMenuTrigger = null;
 
@@ -45,6 +47,7 @@
     });
 
     if (siteMenuClose) siteMenuClose.addEventListener('click', closeSiteMenu);
+    if (siteMenuScrim) siteMenuScrim.addEventListener('click', closeSiteMenu);
 
     siteMenu.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', closeSiteMenu);

@@ -400,10 +400,10 @@ button { font: inherit; }
   position: fixed;
   inset: 0;
   z-index: 150;
-  background: var(--color-paper);
+  display: flex;
+  flex-direction: column;
   visibility: hidden;
   opacity: 0;
-  overflow-y: auto;
   transition: opacity 0.3s ease, visibility 0s linear 0.3s;
 }
 .site-menu.is-open {
@@ -413,15 +413,43 @@ button { font: inherit; }
 }
 body.site-menu-open { overflow: hidden; }
 
-.site-menu__panel {
-  max-width: 505px;
-  min-height: 100%;
+/* Barra superior: replica el encabezado del sitio, se queda visible */
+.site-menu__bar {
+  height: 80px;
+  flex-shrink: 0;
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--color-border);
+}
+.site-menu__bar-inner {
   display: flex;
-  flex-direction: column;
-  padding: 24px 32px clamp(32px, 6vh, 56px) clamp(24px, 6vw, 64px);
+  align-items: center;
+  gap: 16px;
+  height: 100%;
+  padding: 0 clamp(24px, 6vw, 64px);
 }
 
-.site-menu__top { display: flex; align-items: center; gap: 18px; height: 76px; flex-shrink: 0; }
+/* Debajo de la barra: panel blanco a la izquierda + página visible detrás */
+.site-menu__body { flex: 1; display: flex; min-height: 0; }
+
+.site-menu__panel {
+  width: 505px;
+  flex-shrink: 0;
+  background: #FFFFFF;
+  box-shadow: 1px 0 0 var(--color-border), 24px 0 48px -24px rgba(27, 21, 18, 0.18);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(24px, 5vh, 48px) 32px clamp(32px, 6vh, 56px) clamp(24px, 6vw, 64px);
+}
+
+.site-menu__scrim {
+  flex: 1;
+  background: rgba(27, 21, 18, 0.42);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
 .site-menu__close {
   display: flex;
   align-items: center;
@@ -442,7 +470,6 @@ body.site-menu-open { overflow: hidden; }
 .site-menu__links {
   display: flex;
   flex-direction: column;
-  margin-top: clamp(24px, 6vh, 56px);
 }
 .site-menu__links a {
   font-family: var(--font-display);
@@ -494,6 +521,12 @@ body.site-menu-open { overflow: hidden; }
 }
 .site-menu__socials svg { width: 19px; height: 19px; }
 .site-menu__socials a:hover { color: var(--color-red); transform: translateY(-2px); }
+
+/* En pantallas chicas el panel ocupa todo el ancho y no hay velo */
+@media (max-width: 720px) {
+  .site-menu__panel { width: 100%; }
+  .site-menu__scrim { display: none; }
+}
 
 @media (max-width: 560px) {
   .site-menu__links a { font-size: 26px; }

@@ -21,18 +21,21 @@
 <body>
   <a class="skip-link" href="#main">Saltar al contenido</a>
 
-  <!-- MENÚ A PANTALLA COMPLETA -->
+  <!-- MENÚ LATERAL (conserva el encabezado, deja ver la página detrás) -->
   <div class="site-menu" id="siteMenu">
-    <div class="site-menu__panel">
-      <div class="site-menu__top">
+    <div class="site-menu__bar">
+      <div class="site-menu__bar-inner">
         <button type="button" class="site-menu__close" id="siteMenuClose" aria-label="Cerrar menú">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
         </button>
         <a href="#inicio" class="site-menu__brand">
-          <span class="wordmark"><span class="wordmark__accent">MD</span> Asesoría Legal</span>
+          <span class="wordmark wordmark--lg"><span class="wordmark__accent">MD</span> Asesoría Legal</span>
         </a>
       </div>
+    </div>
 
+    <div class="site-menu__body">
+    <div class="site-menu__panel">
       <nav class="site-menu__links" aria-label="Navegación principal">
         <a href="#inicio">Inicio</a>
         <a href="#como-funciona">Cómo funciona</a>
@@ -77,6 +80,9 @@
           </a>
         </li>
       </ul>
+    </div>
+
+      <button type="button" class="site-menu__scrim" id="siteMenuScrim" aria-label="Cerrar menú" tabindex="-1"></button>
     </div>
   </div>
 
