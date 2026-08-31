@@ -2,44 +2,56 @@
   'use strict';
 
   /* ------------------------------------------------------------------
-   * Menú móvil
+   * Menú a pantalla completa: dos botones (nav del hero y nav fijo)
+   * abren el mismo panel.
    * ------------------------------------------------------------------ */
-  var navToggle = document.getElementById('navToggle');
-  var navMenu = document.getElementById('navMenu');
+  var siteMenu = document.getElementById('siteMenu');
+  var siteMenuClose = document.getElementById('siteMenuClose');
+  var menuToggles = Array.prototype.slice.call(document.querySelectorAll('#navToggle, #compactNavToggle'));
+  var lastMenuTrigger = null;
 
-  function closeMenu() {
-    navMenu.classList.remove('is-open');
-    navToggle.setAttribute('aria-expanded', 'false');
-    navToggle.setAttribute('aria-label', 'Abrir menú');
+  function closeSiteMenu() {
+    if (!siteMenu.classList.contains('is-open')) return;
+    siteMenu.classList.remove('is-open');
+    document.body.classList.remove('site-menu-open');
+    menuToggles.forEach(function (btn) {
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', 'Abrir menú');
+    });
+    if (lastMenuTrigger) lastMenuTrigger.focus();
   }
 
-  function openMenu() {
-    navMenu.classList.add('is-open');
-    navToggle.setAttribute('aria-expanded', 'true');
-    navToggle.setAttribute('aria-label', 'Cerrar menú');
+  function openSiteMenu(trigger) {
+    lastMenuTrigger = trigger || null;
+    siteMenu.classList.add('is-open');
+    document.body.classList.add('site-menu-open');
+    menuToggles.forEach(function (btn) {
+      btn.setAttribute('aria-expanded', 'true');
+      btn.setAttribute('aria-label', 'Cerrar menú');
+    });
+    if (siteMenuClose) siteMenuClose.focus();
   }
 
-  if (navToggle && navMenu) {
-    navToggle.addEventListener('click', function () {
-      var isOpen = navMenu.classList.contains('is-open');
-      if (isOpen) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
+  if (siteMenu && menuToggles.length) {
+    menuToggles.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var isOpen = siteMenu.classList.contains('is-open');
+        if (isOpen) {
+          closeSiteMenu();
+        } else {
+          openSiteMenu(btn);
+        }
+      });
     });
 
-    navMenu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', closeMenu);
+    if (siteMenuClose) siteMenuClose.addEventListener('click', closeSiteMenu);
+
+    siteMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', closeSiteMenu);
     });
 
     document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape') closeMenu();
-    });
-
-    document.addEventListener('click', function (event) {
-      var clickedInsideMenu = navMenu.contains(event.target) || navToggle.contains(event.target);
-      if (!clickedInsideMenu && navMenu.classList.contains('is-open')) closeMenu();
+      if (event.key === 'Escape' && siteMenu.classList.contains('is-open')) closeSiteMenu();
     });
   }
 
