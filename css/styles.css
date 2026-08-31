@@ -181,7 +181,7 @@ button { font: inherit; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 108px;
+  height: 80px;
 }
 .navbar__left { display: flex; align-items: center; gap: 16px; }
 .navbar__brand { display: flex; align-items: center; flex-shrink: 0; }
@@ -344,7 +344,7 @@ button { font: inherit; }
   box-shadow: 0 4px 24px -10px rgba(27, 21, 18, 0.18);
   transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, visibility 0s;
 }
-.compact-nav__row { display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 28px; }
+.compact-nav__row { display: flex; align-items: center; justify-content: space-between; height: 80px; gap: 28px; }
 .compact-nav__left { display: flex; align-items: center; gap: 18px; flex-shrink: 0; }
 .compact-nav__brand { flex-shrink: 0; }
 
