@@ -414,12 +414,11 @@ button { font: inherit; }
 body.site-menu-open { overflow: hidden; }
 
 .site-menu__panel {
-  max-width: 640px;
-  margin: 0 auto;
+  max-width: 505px;
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 20px 24px clamp(32px, 6vh, 56px);
+  padding: 24px 32px clamp(32px, 6vh, 56px) clamp(24px, 6vw, 64px);
 }
 
 .site-menu__top { display: flex; align-items: center; gap: 18px; height: 76px; flex-shrink: 0; }
@@ -447,10 +446,10 @@ body.site-menu-open { overflow: hidden; }
 }
 .site-menu__links a {
   font-family: var(--font-display);
-  font-size: clamp(26px, 5vw, 40px);
+  font-size: clamp(24px, 4.5vw, 34px);
   font-weight: 600;
   color: var(--color-ink);
-  padding: 12px 2px;
+  padding: 10px 2px;
   border-bottom: 1px solid var(--color-border);
   opacity: 0;
   transform: translateY(14px);
