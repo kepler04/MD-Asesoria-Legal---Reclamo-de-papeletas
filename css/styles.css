@@ -204,21 +204,20 @@ button { font: inherit; }
   width: 44px;
   height: 44px;
   background: transparent;
-  border: 1px solid var(--color-border);
-  border-radius: 50%;
+  border: 0;
   cursor: pointer;
   z-index: 3;
   flex-shrink: 0;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition: transform 0.2s ease;
 }
-.navbar__toggle:hover { border-color: var(--color-red); background: rgba(216, 30, 44, 0.08); }
+.navbar__toggle:hover span { background: var(--color-red); }
 .navbar__toggle span {
   display: block;
   width: 17px;
   height: 2px;
   margin: 0 auto;
   background: var(--color-ink);
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
 }
 .navbar__toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .navbar__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
@@ -355,20 +354,18 @@ button { font: inherit; }
   width: 42px;
   height: 42px;
   background: transparent;
-  border: 1px solid var(--color-border);
-  border-radius: 50%;
+  border: 0;
   cursor: pointer;
   flex-shrink: 0;
-  transition: border-color 0.2s ease, background 0.2s ease;
 }
-.compact-nav__toggle:hover { border-color: var(--color-red); background: rgba(216, 30, 44, 0.08); }
+.compact-nav__toggle:hover span { background: var(--color-red); }
 .compact-nav__toggle span {
   display: block;
   width: 15px;
   height: 2px;
   margin: 0 auto;
   background: var(--color-ink);
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
 }
 .compact-nav__toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .compact-nav__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
