@@ -178,11 +178,23 @@ button { font: inherit; }
   align-items: center;
   justify-content: space-between;
   height: 108px;
+  background: #FFFFFF;
   border-bottom: 1px solid var(--color-border);
 }
 .navbar__left { display: flex; align-items: center; gap: 16px; }
 .navbar__brand { display: flex; align-items: center; flex-shrink: 0; }
-.navbar__brand-mark { height: 62px; width: auto; flex-shrink: 0; }
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.005em;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+.wordmark__accent { color: var(--color-red); }
+.wordmark--lg { font-size: 28px; }
+.wordmark--sm { font-size: 19px; }
 
 .navbar__toggle {
   display: flex;
@@ -231,19 +243,6 @@ button { font: inherit; }
   background: var(--color-red);
 }
 .navbar__cta { padding: 13px 26px; font-size: 14.5px; text-transform: uppercase; letter-spacing: 0.04em; }
-
-.navbar__socials { display: flex; align-items: center; gap: 13px; }
-.navbar__socials a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  color: var(--color-muted);
-  transition: color 0.15s ease, transform 0.15s ease;
-}
-.navbar__socials svg { width: 19px; height: 19px; }
-.navbar__socials a:hover { color: var(--color-red); transform: translateY(-1px); }
 
 .hero { position: relative; z-index: 2; min-height: clamp(460px, 64vh, 660px); display: flex; align-items: center; padding: var(--space-6) 0; }
 .hero__container {
@@ -329,7 +328,7 @@ button { font: inherit; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 60;
-  background: var(--color-paper);
+  background: #FFFFFF;
   border-bottom: 3px solid var(--color-ink);
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
   visibility: hidden;
@@ -346,7 +345,7 @@ button { font: inherit; }
 }
 .compact-nav__row { display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 28px; }
 .compact-nav__left { display: flex; align-items: center; gap: 18px; flex-shrink: 0; }
-.compact-nav__brand img { height: 36px; width: auto; display: block; flex-shrink: 0; }
+.compact-nav__brand { flex-shrink: 0; }
 
 .compact-nav__toggle {
   display: flex;
@@ -441,7 +440,6 @@ body.site-menu-open { overflow: hidden; }
 }
 .site-menu__close svg { width: 16px; height: 16px; }
 .site-menu__close:hover { border-color: var(--color-red); color: var(--color-red); transform: rotate(90deg); }
-.site-menu__brand img { height: 28px; width: auto; display: block; }
 
 .site-menu__links {
   display: flex;
